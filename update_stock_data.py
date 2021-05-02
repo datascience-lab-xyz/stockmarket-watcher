@@ -52,14 +52,16 @@ def update_marketdata():
             start = datetime.strptime(latest_DB_date, '%Y-%m-%d') + timedelta(days=1)
 
         market_data = pdr.DataReader(market_ticker, 'stooq', start, end)#download data via Pandas DataReader
-        market_data.index = market_data.index.strftime('%Y-%m-%d')#convert data type of date to string
-
-        table_name = stock_markets[market_ticker]
-        try:
-            market_data.to_sql(table_name, connection, if_exists='append')
-        except KeyError as e:
-            print('error')
-            return e
+        if market_data.empty:
+            pass
+        else:
+            market_data.index = market_data.index.strftime('%Y-%m-%d')#convert data type of date to string
+            table_name = stock_markets[market_ticker]
+            try:
+                market_data.to_sql(table_name, connection, if_exists='append')
+            except KeyError as e:
+                print('error')
+                return e
 
     connection.commit()
 
