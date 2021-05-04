@@ -21,7 +21,7 @@ stock_markets = {
     '^UKX':'UK100',
     '^DAX':'DAX30',
 }
-start_default = '2010-01-01'
+start_default = '2000-01-01'
 end = date.today()
 # end parameters
 
