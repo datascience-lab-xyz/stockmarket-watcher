@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}stock market watcher{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+
+{% block body %}
+
+    <h2 class="strong" align="center">世界の株式マーケットインデックスの変動率</h2>
+    <p align="center
+">{{ base_date }}から{{ latest_date }}にかけての変動率（％）</p>
+
+
+    <table align="center">
+    {% for value in result.keys() %}
+        <tr>
+            <td align="left">
+            {{ value }}
+            </td>
+            <td align="right">
+            {{ result[value] }}
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}
